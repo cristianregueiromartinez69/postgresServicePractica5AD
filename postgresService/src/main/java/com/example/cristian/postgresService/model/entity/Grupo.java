@@ -25,6 +25,7 @@ public class Grupo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('grupo_id_seq')")
     @Column(name = "id", nullable = false)
+    @JsonIgnore
     private Integer id;
 
     //nombre del grupo

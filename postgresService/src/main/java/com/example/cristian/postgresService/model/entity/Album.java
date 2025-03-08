@@ -1,6 +1,7 @@
 package com.example.cristian.postgresService.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,6 +24,7 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('album_id_seq')")
     @Column(name = "id", nullable = false)
+    @JsonIgnore
     private Integer id;
 
     //grupo al que pertenece el album
