@@ -9,31 +9,50 @@ import org.hibernate.annotations.ColumnDefault;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Entidad de album
+ * @author cristian
+ * @version 1.0
+ */
 @Entity
 @Table(name = "album")
 public class Album {
+
+    //clave primaria
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('album_id_seq')")
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    //grupo al que pertenece el album
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo_id")
     @JsonBackReference
     private Grupo grupo;
 
+    //titulo del album
     @Size(max = 255)
     @NotNull
     @Column(name = "titulo", nullable = false)
     private String titulo;
 
+    //fecha de lanzamiento del album
     @Column(name = "data_lanzamento")
     private LocalDate dataLanzamento;
 
+    //puntuacion del album
     @Column(name = "puntuacion", precision = 3, scale = 1)
     private BigDecimal puntuacion;
 
+    /**
+     * Constructor de la clase
+     * @param id el id del album
+     * @param grupo el grupo al que pertenece el album
+     * @param titulo el titulo del album
+     * @param dataLanzamento la fecha de lanzamiento del album
+     * @param puntuacion la puntuacion del album
+     */
     public Album(Integer id, Grupo grupo, String titulo, LocalDate dataLanzamento, BigDecimal puntuacion) {
         this.id = id;
         this.grupo = grupo;
@@ -52,6 +71,7 @@ public class Album {
     public Album() {
     }
 
+    //getter y setter
     public Integer getId() {
         return id;
     }
