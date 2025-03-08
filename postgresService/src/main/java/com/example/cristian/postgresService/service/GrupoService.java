@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  */
 @Service
-public class ServiceGrupo {
+public class GrupoService {
 
     //variable del repositorio
     private final GrupoRepository grupoRepository;
@@ -20,7 +20,7 @@ public class ServiceGrupo {
      * Constructor de la clase
      * @param grupoRepository el repositorio del grupo
      */
-    public ServiceGrupo(GrupoRepository grupoRepository) {
+    public GrupoService(GrupoRepository grupoRepository) {
         this.grupoRepository = grupoRepository;
     }
 
