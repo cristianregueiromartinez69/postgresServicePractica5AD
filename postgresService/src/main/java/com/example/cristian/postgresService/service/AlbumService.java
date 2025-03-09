@@ -34,11 +34,15 @@ public class AlbumService {
      * @param albumAuxDTO el DTO del albumes
      */
     public void addAlbumService(AlbumAuxDTO albumAuxDTO) {
-
+        Grupo grupo = grupoRepository.findByid(albumAuxDTO.getGrupoID());
+        if(grupo == null) {
+            throw new
+        }
         Album album = new Album(albumDTO.getGrupo(), albumDTO.getTitulo(),
                 albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
         albumRepository.save(album);
     }
+
 
     /**
      * Metodo para borrar un album por su id
@@ -75,5 +79,6 @@ public class AlbumService {
         albumRepository.deleteById(id);
         return true;
     }
+
 
 }
