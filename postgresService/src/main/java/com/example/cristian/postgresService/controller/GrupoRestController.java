@@ -72,4 +72,22 @@ public class GrupoRestController {
         }
         return ResponseEntity.ok().body("Grupo creado correctamente en llamada");
     }
+
+    /**
+     * Metodo para borrar un grupo por id en postgres y llamar a mongoService para que lo borre
+     * @param id el id del grupo
+     * @return un mensaje indicando si se borró o no el registro
+     */
+    @DeleteMapping("/borrar/{id}")
+    public ResponseEntity<String> borrarGrupoByIdLlamadaPostgreSQLController(@PathVariable Integer id) {
+        try{
+            boolean eliminado = grupoService.borrarGrupoByIdService(id);
+            if(!eliminado){
+                return ResponseEntity.badRequest().body("Grupo no encontrado");
+            }
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Grupo borrado correctamente en llamada");
+    }
 }
