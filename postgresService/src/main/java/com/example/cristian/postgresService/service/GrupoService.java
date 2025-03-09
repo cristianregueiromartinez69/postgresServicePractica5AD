@@ -33,4 +33,16 @@ public class GrupoService {
                 grupoDTO.getDstaFormacion());
         grupoRepository.save(grupo);
     }
+
+    /**
+     * Metodo para borrar un grupo por id
+     * @param id el id del grupo a borrar
+     */
+    public boolean deleteGrupoByIdService(Integer id) {
+        if(!grupoRepository.existsById(id)) {
+            return false;
+        }
+        grupoRepository.deleteById(id);
+        return true;
+    }
 }
