@@ -35,15 +35,56 @@ public class AlbumService {
      * @param albumAuxDTO el DTO del albumes
      */
     public void addAlbumService(AlbumAuxDTO albumAuxDTO) {
-        Grupo grupo = grupoRepository.findByid(albumAuxDTO.getGrupoID());
-        if(grupo == null) {
-            throw new IdException("El grupo con el id " + albumAuxDTO.getGrupoID() + " no existe");
-        }
+        Grupo grupo = getGrupo(albumAuxDTO);
         Album album = new Album(grupo, albumAuxDTO.getTitulo(),
                 albumAuxDTO.getDataLanzamento(), albumAuxDTO.getPuntuacion());
         albumRepository.save(album);
     }
 
+    /**
+     * Metodo para borrar un album por su id
+     * @param id el id del album
+     * @return un mensaje indicando si se borro o no
+     */
+    public boolean deleteAlbumByIdService(Integer id) {
+        if(!albumRepository.existsById(id)) {
+            return false;
+        }
+        albumRepository.deleteById(id);
+        return true;
+    }
 
+    /**
+     * Metodo para crear un album y que se cree en mongoService
+     * @param albumAuxDTO el ablum DTO a crear
+     */
+    public void createAlbumService(AlbumAuxDTO albumAuxDTO) {
+        Grupo grupo = getGrupo(albumAuxDTO);
+        Album album = new Album(grupo, albumAuxDTO.getTitulo(),
+                albumAuxDTO.getDataLanzamento(), albumAuxDTO.getPuntuacion());
+        albumRepository.save(album);
+    }
+
+    /**
+     * metodo para borrar un album por id en postgreSQL y mongoService
+     * @param id el id del album
+     * @return un mensaje indicando si se borro o no
+     */
+    public boolean borrarAlbumByIdService(Integer id) {
+        if(!albumRepository.existsById(id)) {
+            return false;
+        }
+        albumRepository.deleteById(id);
+        return true;
+    }
+
+
+    private Grupo getGrupo(AlbumAuxDTO albumAuxDTO) {
+        Grupo grupo = grupoRepository.findByid(albumAuxDTO.getGrupoID());
+        if(grupo == null) {
+            throw new IdException("El grupo con el id " + albumAuxDTO.getGrupoID() + " no existe");
+        }
+        return grupo;
+    }
 
 }
