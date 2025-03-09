@@ -1,5 +1,6 @@
 package com.example.cristian.postgresService.service;
 
+import com.example.cristian.postgresService.excepciones.IdException;
 import com.example.cristian.postgresService.model.dto.AlbumAuxDTO;
 import com.example.cristian.postgresService.model.dto.AlbumDTO;
 import com.example.cristian.postgresService.model.entity.Album;
@@ -36,49 +37,13 @@ public class AlbumService {
     public void addAlbumService(AlbumAuxDTO albumAuxDTO) {
         Grupo grupo = grupoRepository.findByid(albumAuxDTO.getGrupoID());
         if(grupo == null) {
-            throw new
+            throw new IdException("El grupo con el id " + albumAuxDTO.getGrupoID() + " no existe");
         }
-        Album album = new Album(albumDTO.getGrupo(), albumDTO.getTitulo(),
-                albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
+        Album album = new Album(grupo, albumAuxDTO.getTitulo(),
+                albumAuxDTO.getDataLanzamento(), albumAuxDTO.getPuntuacion());
         albumRepository.save(album);
     }
 
-
-    /**
-     * Metodo para borrar un album por su id
-     * @param id el id del album
-     * @return un mensaje indicando si se borro o no
-     */
-    public boolean deleteAlbumByIdService(Integer id) {
-        if(!albumRepository.existsById(id)) {
-            return false;
-        }
-        albumRepository.deleteById(id);
-        return true;
-    }
-
-    /**
-     * Metodo para crear un album y que se cree en mongoService
-     * @param albumDTO el ablum DTO a crear
-     */
-    public void createAlbumService(AlbumDTO albumDTO) {
-        Album album = new Album(albumDTO.getGrupo(), albumDTO.getTitulo(),
-                albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
-        albumRepository.save(album);
-    }
-
-    /**
-     * metodo para borrar un album por id en postgreSQL y mongoService
-     * @param id el id del album
-     * @return un mensaje indicando si se borro o no
-     */
-    public boolean borrarAlbumByIdService(Integer id) {
-        if(!albumRepository.existsById(id)) {
-            return false;
-        }
-        albumRepository.deleteById(id);
-        return true;
-    }
 
 
 }
