@@ -45,4 +45,28 @@ public class GrupoService {
         grupoRepository.deleteById(id);
         return true;
     }
+
+    /**
+     * Metodo que inserta un objeto en la base de postgres y llamará al de mongo
+     * @param grupoDTO el grupoDT0
+     */
+    public void createGrupoService(GrupoDTO grupoDTO) {
+        Grupo grupo = new Grupo(grupoDTO.getNome(), grupoDTO.getXenero(),
+                grupoDTO.getDstaFormacion());
+        grupoRepository.save(grupo);
+    }
+
+    /**
+     * Metodo para borrar un grupo por id en postgres y borrará el de mongo
+     * @param id el id del grupo a borrar
+     */
+    public boolean borrarGrupoByIdService(Integer id) {
+        if(!grupoRepository.existsById(id)) {
+            return false;
+        }
+        grupoRepository.deleteById(id);
+        return true;
+    }
+
+
 }
