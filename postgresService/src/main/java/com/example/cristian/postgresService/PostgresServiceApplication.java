@@ -12,4 +12,4 @@ public class PostgresServiceApplication {
 
 }
 
-//TODO: perfecto, pasamos a otros endpoints
+//TODO: todos los endpoints funcionan, pasamos a llamada
