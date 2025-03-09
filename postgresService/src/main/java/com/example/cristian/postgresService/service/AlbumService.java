@@ -2,7 +2,6 @@ package com.example.cristian.postgresService.service;
 
 import com.example.cristian.postgresService.excepciones.IdException;
 import com.example.cristian.postgresService.model.dto.AlbumAuxDTO;
-import com.example.cristian.postgresService.model.dto.AlbumDTO;
 import com.example.cristian.postgresService.model.entity.Album;
 import com.example.cristian.postgresService.model.entity.Grupo;
 import com.example.cristian.postgresService.repository.AlbumRepository;
@@ -78,7 +77,11 @@ public class AlbumService {
         return true;
     }
 
-
+    /**
+     * Metodo para obtener un grupo y saber si existe por su id o no
+     * @param albumAuxDTO la DTO para buscar al grupo
+     * @return el objeto Grupo
+     */
     private Grupo getGrupo(AlbumAuxDTO albumAuxDTO) {
         Grupo grupo = grupoRepository.findByid(albumAuxDTO.getGrupoID());
         if(grupo == null) {
