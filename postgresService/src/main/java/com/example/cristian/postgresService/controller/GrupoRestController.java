@@ -57,4 +57,19 @@ public class GrupoRestController {
         }
         return ResponseEntity.ok().body("Grupo eliminado correctamente");
     }
+
+    /**
+     * Segundo metodo para crear el objeto en postgres pero usando una llamada a mongoService
+     * @param grupoDTO el objeto a insertar en las bases de datos
+     * @return un mensaje indicando si se creó o no
+     */
+    @PostMapping("/crear")
+    public ResponseEntity<String> createGrupoLlmadaPostgreSQLController(@RequestBody GrupoDTO grupoDTO) {
+        try{
+            grupoService.createGrupoService(grupoDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok().body("Grupo creado correctamente en llamada");
+    }
 }
