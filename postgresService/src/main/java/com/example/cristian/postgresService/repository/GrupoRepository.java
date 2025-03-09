@@ -12,5 +12,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GrupoRepository extends JpaRepository<Grupo, Integer> {
 
+    /**
+     * Metodo para encontrar un grupo por id
+     * @param id el id del grupo
+     * @return el objeto grupo
+     */
+    Grupo findByid(Integer id);
 
 }

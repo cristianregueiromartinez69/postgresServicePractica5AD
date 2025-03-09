@@ -1,8 +1,11 @@
 package com.example.cristian.postgresService.service;
 
+import com.example.cristian.postgresService.model.dto.AlbumAuxDTO;
 import com.example.cristian.postgresService.model.dto.AlbumDTO;
 import com.example.cristian.postgresService.model.entity.Album;
+import com.example.cristian.postgresService.model.entity.Grupo;
 import com.example.cristian.postgresService.repository.AlbumRepository;
+import com.example.cristian.postgresService.repository.GrupoRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,21 +17,24 @@ import org.springframework.stereotype.Service;
 public class AlbumService {
 
     //variable de repositorio de album
-    public final AlbumRepository albumRepository;
+    private final AlbumRepository albumRepository;
+    private final GrupoRepository grupoRepository;
 
     /**
      * Constructor de la clase
      * @param albumRepository el repositorio de albumes
      */
-    public AlbumService(AlbumRepository albumRepository) {
+    public AlbumService(AlbumRepository albumRepository, GrupoRepository grupoRepository) {
         this.albumRepository = albumRepository;
+        this.grupoRepository = grupoRepository;
     }
 
     /**
      * Metodo para crear un album
-     * @param albumDTO el DTO del albumes
+     * @param albumAuxDTO el DTO del albumes
      */
-    public void addAlbumService(AlbumDTO albumDTO) {
+    public void addAlbumService(AlbumAuxDTO albumAuxDTO) {
+
         Album album = new Album(albumDTO.getGrupo(), albumDTO.getTitulo(),
                 albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
         albumRepository.save(album);
