@@ -12,4 +12,4 @@ public class PostgresServiceApplication {
 
 }
 
-//TODO: hacer resto de endpoints
+//TODO: perfecto, pasamos a otros endpoints
