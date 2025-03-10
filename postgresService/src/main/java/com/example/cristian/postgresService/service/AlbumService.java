@@ -86,6 +86,7 @@ public class AlbumService {
             return false;
         }
         albumRepository.deleteById(id);
+        servicioMongo.borrarAlbumLlamada(id);
         return true;
     }
 
