@@ -69,6 +69,7 @@ public class GrupoService {
             return false;
         }
         grupoRepository.deleteById(id);
+        servicioMongo.borrarGrupoLlamada(id);
         return true;
     }
 
