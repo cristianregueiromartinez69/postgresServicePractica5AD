@@ -18,7 +18,7 @@ public interface ServicioMongo {
 
     /**
      * Metodo para comunicarse con mongoService y crear un grupo
-     * @param grupoDTO el grupo a crear
+     * @param grupoAuxDTO el grupo a crear
      */
     @PostMapping("/Practica5MongoService/grupo/crear")
     void crearGrupoLlamada(@RequestBody GrupoAuxDTO grupoAuxDTO);
