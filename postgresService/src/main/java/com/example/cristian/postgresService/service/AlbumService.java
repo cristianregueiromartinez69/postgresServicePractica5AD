@@ -1,11 +1,13 @@
 package com.example.cristian.postgresService.service;
 
 import com.example.cristian.postgresService.excepciones.IdException;
+import com.example.cristian.postgresService.model.dto.AlbumAuxMongoServiceDTO;
 import com.example.cristian.postgresService.model.dto.AlbumDTO;
 import com.example.cristian.postgresService.model.entity.Album;
 import com.example.cristian.postgresService.model.entity.Grupo;
 import com.example.cristian.postgresService.repository.AlbumRepository;
 import com.example.cristian.postgresService.repository.GrupoRepository;
+import com.example.cristian.postgresService.servicio_comunicacion.ServicioMongo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,14 +21,16 @@ public class AlbumService {
     //variable de repositorio de album
     private final AlbumRepository albumRepository;
     private final GrupoRepository grupoRepository;
+    private final ServicioMongo servicioMongo;
 
     /**
      * Constructor de la clase
      * @param albumRepository el repositorio de albumes
      */
-    public AlbumService(AlbumRepository albumRepository, GrupoRepository grupoRepository) {
+    public AlbumService(AlbumRepository albumRepository, GrupoRepository grupoRepository, ServicioMongo servicioMongo) {
         this.albumRepository = albumRepository;
         this.grupoRepository = grupoRepository;
+        this.servicioMongo = servicioMongo;
     }
 
     /**
@@ -61,7 +65,15 @@ public class AlbumService {
         Grupo grupo = getGrupo(albumDTO);
         Album album = new Album(grupo, albumDTO.getTitulo(),
                 albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
+
+        Integer albumID = album.getId();
+        Integer grupoID = grupo.getId();
+        AlbumAuxMongoServiceDTO albumAuxMongoServiceDTO = new AlbumAuxMongoServiceDTO(
+            albumID, grupoID, albumDTO.getTitulo(), albumDTO.getDataLanzamento(),
+                albumDTO.getPuntuacion()
+        );
         albumRepository.save(album);
+        servicioMongo.crearAlbum(albumAuxMongoServiceDTO);
     }
 
     /**
