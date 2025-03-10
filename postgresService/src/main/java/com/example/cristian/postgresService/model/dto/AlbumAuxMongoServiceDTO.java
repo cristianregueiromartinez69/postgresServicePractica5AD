@@ -3,18 +3,43 @@ package com.example.cristian.postgresService.model.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class AlbumAuxDTO {
+/**
+ * Clase aux DTO de album para mandarla a MongoService
+ * @author cristian
+ * @version 1.0
+ */
+public class AlbumAuxMongoServiceDTO {
 
+    //atributos de clase
+    private Integer id;
     private Integer grupoID;
     private String titulo;
     private LocalDate dataLanzamento;
     private BigDecimal puntuacion;
 
-    public AlbumAuxDTO(Integer grupoID, String titulo, LocalDate dataLanzamento, BigDecimal puntuacion) {
+    /**
+     * Constructor de la clase
+     * @param id el id del album
+     * @param grupoID el id del grupo
+     * @param titulo el titulo del album
+     * @param dataLanzamento el año de lanzamiento del album
+     * @param puntuacion la puntuacion de album
+     */
+    public AlbumAuxMongoServiceDTO(Integer id, Integer grupoID, String titulo, LocalDate dataLanzamento, BigDecimal puntuacion) {
+        this.id = id;
         this.grupoID = grupoID;
         this.titulo = titulo;
         this.dataLanzamento = dataLanzamento;
         this.puntuacion = puntuacion;
+    }
+
+    //getter y setter
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getGrupoID() {

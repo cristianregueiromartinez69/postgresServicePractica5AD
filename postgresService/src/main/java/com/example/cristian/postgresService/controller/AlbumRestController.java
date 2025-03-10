@@ -1,6 +1,6 @@
 package com.example.cristian.postgresService.controller;
 
-import com.example.cristian.postgresService.model.dto.AlbumAuxDTO;
+import com.example.cristian.postgresService.model.dto.AlbumDTO;
 import com.example.cristian.postgresService.service.AlbumService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +27,13 @@ public class AlbumRestController {
 
     /**
      * Metodo para crear un album en postgreSQL
-     * @param albumAuxDTO el album DTO
+     * @param albumDTO el album DTO
      * @return un mensaje indicando si se creo o no
      */
     @PostMapping("/add")
-    public ResponseEntity<String> addNewAlbumPostgreSQLController(@RequestBody AlbumAuxDTO albumAuxDTO) {
+    public ResponseEntity<String> addNewAlbumPostgreSQLController(@RequestBody AlbumDTO albumDTO) {
         try{
-            albumService.addAlbumService(albumAuxDTO);
+            albumService.addAlbumService(albumDTO);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -60,13 +60,13 @@ public class AlbumRestController {
 
     /**
      * Metodo para crear un album en postgreSQL y llamar a mongoService
-     * @param albumAuxDTO el album DTO a crear en postgreSQL y mongoService
+     * @param albumDTO el album DTO a crear en postgreSQL y mongoService
      * @return un mensaje indicando si se creo o no
      */
     @PostMapping("/crear")
-    public ResponseEntity<String> createNewAlbumLlamadaPostgreSQLController(@RequestBody AlbumAuxDTO albumAuxDTO) {
+    public ResponseEntity<String> createNewAlbumLlamadaPostgreSQLController(@RequestBody AlbumDTO albumDTO) {
         try{
-            albumService.createAlbumService(albumAuxDTO);
+            albumService.createAlbumService(albumDTO);
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
