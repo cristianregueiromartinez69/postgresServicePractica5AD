@@ -2,35 +2,28 @@ package com.example.cristian.postgresService.model.dto;
 
 import java.time.LocalDate;
 
-/**
- * DTO de grupo
- * @author cristian
- * @version 1.0
- */
-public class GrupoDTO {
+public class GrupoAuxDTO {
 
-    //variables de clase
+    private Integer id;
     private String nome;
     private String xenero;
     private LocalDate dstaFormacion;
 
-    /**
-     * Constructor de la clase
-     * @param nome el nombre del grupo
-     * @param xenero el genero del grupo
-     * @param dstaFormacion la fecha de formacion del grupo
-     */
-    public GrupoDTO(String nome, String xenero, LocalDate dstaFormacion) {
+    public GrupoAuxDTO(Integer id, String nome, String xenero, LocalDate dstaFormacion) {
+        this.id = id;
         this.nome = nome;
         this.xenero = xenero;
         this.dstaFormacion = dstaFormacion;
     }
 
-    public GrupoDTO() {
-
+    public Integer getId() {
+        return id;
     }
 
-    //getter y setter
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

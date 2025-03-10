@@ -57,6 +57,7 @@ public class GrupoService {
         Grupo grupo = new Grupo(grupoDTO.getNome(), grupoDTO.getXenero(),
                 grupoDTO.getDstaFormacion());
         grupoRepository.save(grupo);
+
         servicioMongo.crearGrupoLlamada(grupoDTO);
     }
 
