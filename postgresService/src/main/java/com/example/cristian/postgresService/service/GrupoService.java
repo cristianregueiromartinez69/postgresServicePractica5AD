@@ -1,5 +1,6 @@
 package com.example.cristian.postgresService.service;
 
+import com.example.cristian.postgresService.model.dto.GrupoAuxDTO;
 import com.example.cristian.postgresService.model.dto.GrupoDTO;
 import com.example.cristian.postgresService.model.entity.Grupo;
 import com.example.cristian.postgresService.repository.GrupoRepository;
@@ -58,7 +59,11 @@ public class GrupoService {
                 grupoDTO.getDstaFormacion());
         grupoRepository.save(grupo);
 
-        servicioMongo.crearGrupoLlamada(grupoDTO);
+        Integer idGenerado = grupo.getId();
+        GrupoAuxDTO grupoAuxDTO = new GrupoAuxDTO(idGenerado, grupoDTO.getNome(),
+                grupoDTO.getXenero(), grupoDTO.getDstaFormacion());
+
+        servicioMongo.crearGrupoLlamada(grupoAuxDTO);
     }
 
     /**

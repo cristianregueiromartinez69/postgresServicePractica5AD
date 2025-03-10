@@ -1,5 +1,6 @@
 package com.example.cristian.postgresService.servicio_comunicacion;
 
+import com.example.cristian.postgresService.model.dto.GrupoAuxDTO;
 import com.example.cristian.postgresService.model.dto.GrupoDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +21,7 @@ public interface ServicioMongo {
      * @param grupoDTO el grupo a crear
      */
     @PostMapping("/Practica5MongoService/grupo/crear")
-    void crearGrupoLlamada(@RequestBody GrupoDTO grupoDTO);
+    void crearGrupoLlamada(@RequestBody GrupoAuxDTO grupoAuxDTO);
 
     /**
      * Metodo para comunicarse con mongoService y borrar un grupo por su id
