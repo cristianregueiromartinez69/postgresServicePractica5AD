@@ -65,14 +65,14 @@ public class AlbumService {
         Grupo grupo = getGrupo(albumDTO);
         Album album = new Album(grupo, albumDTO.getTitulo(),
                 albumDTO.getDataLanzamento(), albumDTO.getPuntuacion());
+        albumRepository.save(album);
 
         Integer albumID = album.getId();
         Integer grupoID = grupo.getId();
         AlbumAuxMongoServiceDTO albumAuxMongoServiceDTO = new AlbumAuxMongoServiceDTO(
-            albumID, grupoID, albumDTO.getTitulo(), albumDTO.getDataLanzamento(),
+                albumID, grupoID, albumDTO.getTitulo(), albumDTO.getDataLanzamento(),
                 albumDTO.getPuntuacion()
         );
-        albumRepository.save(album);
         servicioMongo.crearAlbum(albumAuxMongoServiceDTO);
     }
 
