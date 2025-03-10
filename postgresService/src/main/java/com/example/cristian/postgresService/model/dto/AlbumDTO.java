@@ -1,45 +1,42 @@
 package com.example.cristian.postgresService.model.dto;
 
-import com.example.cristian.postgresService.model.entity.Grupo;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * DT0 de album
+ * DTO de album para insertar datos
  * @author cristian
  * @version 1.0
  */
 public class AlbumDTO {
 
     //atributos de clase
-    private Grupo grupo;
+    private Integer grupoID;
     private String titulo;
     private LocalDate dataLanzamento;
     private BigDecimal puntuacion;
 
     /**
      * Constructor de la clase
-     * @param grupo el grupo al que pertenece el album
+     * @param grupoID el id del grupo
      * @param titulo el titulo del album
      * @param dataLanzamento la fecha de lanzamiento del album
      * @param puntuacion la puntuacion del album
      */
-    public AlbumDTO(Grupo grupo, String titulo, LocalDate dataLanzamento, BigDecimal puntuacion) {
-        this.grupo = grupo;
+    public AlbumDTO(Integer grupoID, String titulo, LocalDate dataLanzamento, BigDecimal puntuacion) {
+        this.grupoID = grupoID;
         this.titulo = titulo;
         this.dataLanzamento = dataLanzamento;
         this.puntuacion = puntuacion;
     }
 
-    //getter y setter del album
-
-    public Grupo getGrupo() {
-        return grupo;
+    //getter y setter
+    public Integer getGrupoID() {
+        return grupoID;
     }
 
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
+    public void setGrupoID(Integer grupoID) {
+        this.grupoID = grupoID;
     }
 
     public String getTitulo() {

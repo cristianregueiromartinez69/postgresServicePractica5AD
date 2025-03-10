@@ -1,7 +1,6 @@
 package com.example.cristian.postgresService.servicio_comunicacion;
 
-import com.example.cristian.postgresService.model.dto.GrupoAuxDTO;
-import com.example.cristian.postgresService.model.dto.GrupoDTO;
+import com.example.cristian.postgresService.model.dto.GrupoAuxMongoServiceDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +17,10 @@ public interface ServicioMongo {
 
     /**
      * Metodo para comunicarse con mongoService y crear un grupo
-     * @param grupoAuxDTO el grupo a crear
+     * @param grupoAuxMongoServiceDTO el grupo a crear
      */
     @PostMapping("/Practica5MongoService/grupo/crear")
-    void crearGrupoLlamada(@RequestBody GrupoAuxDTO grupoAuxDTO);
+    void crearGrupoLlamada(@RequestBody GrupoAuxMongoServiceDTO grupoAuxMongoServiceDTO);
 
     /**
      * Metodo para comunicarse con mongoService y borrar un grupo por su id
@@ -29,5 +28,7 @@ public interface ServicioMongo {
      */
     @DeleteMapping("/Practica5MongoService/grupo/borrar/{id}")
     void borrarGrupoLlamada(@PathVariable Integer id);
+
+
 
 }
