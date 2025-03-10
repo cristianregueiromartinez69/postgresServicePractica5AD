@@ -37,5 +37,12 @@ public interface ServicioMongo {
     @PostMapping("/Practica5MongoService/album/crear")
     void crearAlbum(@RequestBody AlbumAuxMongoServiceDTO albumAuxMongoServiceDTO);
 
+    /**
+     * Metodo para comunicarse con mongoService y borrar un album por su id
+     * @param id el id del album que queremos borrar
+     */
+    @DeleteMapping("/Practica5MongoService/album/borrar/{id}")
+    void borrarAlbumLlamada(@PathVariable Integer id);
+
 
 }
